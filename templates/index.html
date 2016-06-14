@@ -2,23 +2,28 @@
 
 {% block content %}
     <div class="text-center bring-down">
-        <form action="" method="post">
+    <div class="row">
+        <h1>Maths</h1>
+        <form method="post">
             {% csrf_token %}
             <ul class="list-unstyled">
-                <li>{{ next_math.num1 }} </li>
-                {% if result == None %}
+                {% if result != 0 %}
+                    <li>{{ next_math.num1 }} </li>
+                {% endif %}
+                {% if result == 0 %}
                     <li>{{ form.num1 }}</li>
                 {% endif %}
                 <li>{{ form.operator }}</li>
                 <li>{{ form.num2 }}</li>
-                <li><input class="btn btn-default" type="submit" value="Let's Do Math!"></li>
+                <li><input class="btn btn-default" type="submit" value="Do Math!"></li>
             </ul>
-            {% if result != None %}
-                {{ equation }} = <strong>{{ result }}</strong>
+            {% if result != 0 %}
+                {{ num1 }} {{ operator }} {{ num2 }}= <strong>{{ result }}</strong>
                 <br>
                 <br>
                 <a class="btn btn-default" href="{% url 'index' %}">Clear</a>
             {% endif %}
         </form>
+    </div>
     </div>
 {% endblock %}
