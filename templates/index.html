@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+    <div class="text-center bring-down">
+        <form action="" method="post">
+            {% csrf_token %}
+            <ul class="list-unstyled">
+                <li>{{ form.num1 }}</li>
+                <li>{{ form.operator }}</li>
+                <li>{{ form.num2 }}</li>
+                <li><input type="submit" value="Let's Do Math!"></li>
+            </ul>
+            {{ result }}
+        </form>
+    </div>
 {% endblock %}
