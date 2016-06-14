@@ -13,10 +13,12 @@ def index_view(request):
             print(num1, operator, num2)
             if operator == '+':
                 result = num1 + num2
+                next_math = CalcForm(initial={"num1": result})
                 return render(request, 'index.html',
                               {"form": CalcForm(),
                                'result': result,
-                               'equation': [num1, operator, num2]})
+                               'equation': [num1, operator, num2],
+                               'next_math': next_math})
             elif operator == '-':
                 result = num1 - num2
                 return render(request, 'index.html',

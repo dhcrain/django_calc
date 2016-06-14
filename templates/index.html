@@ -5,12 +5,20 @@
         <form action="" method="post">
             {% csrf_token %}
             <ul class="list-unstyled">
-                <li>{{ form.num1 }}</li>
+                <li>{{ next_math.num1 }} </li>
+                {% if result == None %}
+                    <li>{{ form.num1 }}</li>
+                {% endif %}
                 <li>{{ form.operator }}</li>
                 <li>{{ form.num2 }}</li>
-                <li><input type="submit" value="Let's Do Math!"></li>
+                <li><input class="btn btn-default" type="submit" value="Let's Do Math!"></li>
             </ul>
-            {{ equation }} = {{ result }}
+            {% if result != None %}
+                {{ equation }} = <strong>{{ result }}</strong>
+                <br>
+                <br>
+                <a class="btn btn-default" href="{% url 'index' %}">Clear</a>
+            {% endif %}
         </form>
     </div>
 {% endblock %}
