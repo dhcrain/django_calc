@@ -1,3 +1,6 @@
+from django.contrib.auth.forms import UserCreationForm
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from calc.forms import CalcForm
 # Create your views here.
@@ -35,7 +38,15 @@ def index_view(request):
 
 
 def user_create_view(request):
-    return render(request, 'user_create.html', {})
+    if request.POST:
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('index'))
+        else:
+            return render(request, 'user_create.html', {"form": form})
+    form = UserCreationForm()
+    return render(request, 'user_create.html', {"form": form})
 
 
 def profile_view(request):
