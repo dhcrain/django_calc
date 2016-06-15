@@ -32,3 +32,11 @@ def index_view(request):
                    'next_math': next_math
                    })
     # return render(request, 'index.html', {"form": CalcForm()})
+
+
+def user_create_view(request):
+    return render(request, 'user_create.html', {})
+
+
+def profile_view(request):
+    return render(request, 'profile.html', {})

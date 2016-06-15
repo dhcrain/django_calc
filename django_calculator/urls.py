@@ -16,7 +16,14 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from calc import views
+from django.contrib.auth.views import login, logout
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.index_view, name='index')
+    url(r'^calc/', views.index_view, name='index'),
+    url(r'^$', login, name='login_view'),
+    url(r'^logout/$', logout, name='logout_view'),
+    url(r'^user-create/$', views.user_create_view, name='user_create_view'),
+    url(r'^accounts/profile/$', views.profile_view, name='profile_view'),
+
 ]
