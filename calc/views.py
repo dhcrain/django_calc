@@ -1,12 +1,15 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from calc.forms import CalcForm
+from calc.models import Operation
 # Create your views here.
 
 
-def index_view(request):
+def index_view(request):    # Calc
     result = 0
     num1 = 0
     num2 = 0
@@ -25,6 +28,8 @@ def index_view(request):
                 result = num1 / num2
             elif operator == 'X':
                 result = num1 * num2
+            if request.user.is_authenticated():
+                Operation.objects.create(num1=num1, operator=operator, num2=num2, result=result, user=User.objects.get(id=request.user.id))
     next_math = CalcForm(initial={"num1": result})
     return render(request, 'index.html',
                   {"form": CalcForm(),
@@ -34,7 +39,6 @@ def index_view(request):
                    'operator': operator,
                    'next_math': next_math
                    })
-    # return render(request, 'index.html', {"form": CalcForm()})
 
 
 def user_create_view(request):
@@ -49,5 +53,8 @@ def user_create_view(request):
     return render(request, 'user_create.html', {"form": form})
 
 
+@login_required
 def profile_view(request):
-    return render(request, 'profile.html', {})
+    print(request.user)
+    operations = Operation.objects.filter(user=User.objects.get(id=request.user.id))
+    return render(request, 'profile.html', {"operations": operations})

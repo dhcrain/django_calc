@@ -10,3 +10,6 @@ class Operation(models.Model):
     operator = models.CharField(max_length=3)
     num2 = models.FloatField()
     result = models.FloatField()
+
+    def __str__(self):
+        return str(self.result)
