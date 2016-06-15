@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1 class="text-center">profile, calc log</h1>
-    <ol class="calc-form">
+    <ol class="form-bg">
     {% for calc in operations %}
         <li>{{ calc.num1 }} {{ calc.operator }} {{ calc.num2 }} = {{ calc.result }}</li>
     {% endfor %}

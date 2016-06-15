@@ -4,7 +4,7 @@
     <div class="text-center bring-down row">
     <div class="col-md-3 col-md-offset-3">
         <h1>Maths</h1>
-        <div class="form-bg">
+        <div class="form-bg calc">
         <form method="post">
             {% csrf_token %}
             <ul class="list-unstyled">
@@ -19,9 +19,7 @@
                 <li><input class="btn btn-default" type="submit" value="Do Math!"></li>
             </ul>
             {% if result != 0 %}
-                {{ num1 }} {{ operator }} {{ num2 }}= <strong>{{ result }}</strong>
-                <br>
-                <br>
+                <p class="badge">{{ num1 }} {{ operator }} {{ num2 }} = {{ result }}</p><br>
                 <a class="btn btn-default" href="{% url 'index' %}">Clear</a>
             {% endif %}
         </form>
