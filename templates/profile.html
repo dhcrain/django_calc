@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>profile, calc log</h1>
-    <ol>
+    <h1 class="text-center">profile, calc log</h1>
+    <ol class="calc-form">
     {% for calc in operations %}
         <li>{{ calc.num1 }} {{ calc.operator }} {{ calc.num2 }} = {{ calc.result }}</li>
     {% endfor %}

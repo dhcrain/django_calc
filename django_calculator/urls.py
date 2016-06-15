@@ -22,7 +22,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^calc/', views.index_view, name='index'),
     url(r'^$', login, name='login_view'),
-    url(r'^logout/$', logout, name='logout_view'),
+    url(r'^logout/$', logout, {'next_page': 'index'}, name='logout_view'),
     url(r'^user-create/$', views.user_create_view, name='user_create_view'),
     url(r'^accounts/profile/$', views.profile_view, name='profile_view'),
 ]
